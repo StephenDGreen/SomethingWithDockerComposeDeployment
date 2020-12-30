@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  something.api:
+    image: stephendgreen/somethingwithdockercompose-api:latest
+    ports:
+      - 8080:80
+    networks:
+      - sample_network
+
+  something.ui:
+    image: stephendgreen/somethingwithdockercompose-ui:latest
+    networks:
+      - sample_network
+    depends_on:
+      - something.api
+      
+networks:
+  sample_network:
+    driver: bridge
